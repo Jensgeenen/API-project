@@ -1,65 +1,64 @@
-# To-Do API
+# API Project
 
-Dit project is een eenvoudig te beheren To-Do API waarmee gebruikers taken kunnen aanmaken, bijwerken, verwijderen en opvragen. De API beheert drie entiteiten: `User`, `Project`, en `Task`.
+Dit project is een eenvoudige API voor het beheren van gebruikers, projecten en taken, gebouwd met Flask en SQLite.
 
-### Entiteiten:
-- **User**: Beheert gebruikersinformatie.
-- **Project**: Verzamelt taken in een project.
-- **Task**: Een specifieke taak die binnen een project valt.
+## Thema en Uitbreidingen
 
-### API Endpoints
+Deze API is ontworpen voor het beheren van taken en projecten. Het biedt eindpunten voor het aanmaken, bijwerken, ophalen en verwijderen van gebruikers, projecten en taken. Deze API kan worden uitgebreid met authenticatie, autorisatie en geavanceerde querymogelijkheden.
 
-- **GET /tasks**: Haal alle taken op.
-- **GET /tasks/:id**: Haal een specifieke taak op basis van ID.
-- **POST /tasks**: Maak een nieuwe taak aan.
-- **PUT /tasks/:id**: Werk een specifieke taak bij.
-- **DELETE /tasks/:id**: Verwijder een specifieke taak.
-- **GET /projects**: Haal alle projecten op.
-- **POST /projects**: Maak een nieuw project aan.
-- **GET /users**: Haal alle gebruikers op.
+## API Endpoints
+
+### Gebruikers Endpoints
 - **POST /users**: Maak een nieuwe gebruiker aan.
+- **GET /users/{id}**: Haal een specifieke gebruiker op door ID.
 
-### Aantoonbare werking
+### Projecten Endpoints
+- **POST /projects**: Maak een nieuw project aan.
+- **GET /projects**: Haal alle projecten op.
+- **GET /projects/{id}**: Haal een specifiek project op door ID.
 
-Hieronder zijn de screenshots toegevoegd van de Postman requests:
+### Taken Endpoints
+- **POST /tasks**: Maak een nieuwe taak aan.
+- **GET /tasks**: Haal alle taken op.
+- **GET /tasks/{id}**: Haal een specifieke taak op door ID.
+- **PUT /tasks/{id}**: Werk een bestaande taak bij.
+- **DELETE /tasks/{id}**: Verwijder een taak.
+- **GET /projects/{id}/tasks**: Haal alle taken op die horen bij een specifiek project.
 
-- **GET /projects**: 
-  ![Get Projects](https://github.com/Jensgeenen/API-project/raw/main/project%20api/Schermafbeelding%202024-08-15%20224036.png)
+## API Testen met Postman
 
-- **GET /projects/1**: 
-  ![Get Project 1](https://github.com/Jensgeenen/API-project/raw/main/project%20api/Schermafbeelding%202024-08-15%20224100.png)
+### GET /projects
+![Get Projects](https://github.com/Jensgeenen/API-project/raw/main/project%20api/get_projects.png)
 
-- **POST /tasks**: 
-  ![Post Task](https://github.com/Jensgeenen/API-project/raw/main/project%20api/Schermafbeelding%202024-08-15%20224139.png)
+### GET /projects/{id}
+![Get Project By ID](https://github.com/Jensgeenen/API-project/raw/main/project%20api/get_project_by_id.png)
 
-- **GET /tasks/1**: 
-  ![Get Task 1](https://github.com/Jensgeenen/API-project/raw/main/project%20api/Schermafbeelding%202024-08-15%20224243.png)
+### POST /projects
+![Post Projects](https://github.com/Jensgeenen/API-project/raw/main/project%20api/post_projects.png)
 
-- **PUT /tasks/1**: 
-  ![Put Task](https://github.com/Jensgeenen/API-project/raw/main/project%20api/Schermafbeelding%202024-08-15%20224314.png)
+### POST /tasks
+![Post Tasks](https://github.com/Jensgeenen/API-project/raw/main/project%20api/post_tasks.png)
 
-- **GET /tasks**: 
-  ![Get Tasks](https://github.com/Jensgeenen/API-project/raw/main/project%20api/Schermafbeelding%202024-08-15%20224413.png)
+### GET /tasks/{id}
+![Get Task By ID](https://github.com/Jensgeenen/API-project/raw/main/project%20api/get_task_by_id.png)
 
-- **POST /users**: 
-  ![Post User](https://github.com/Jensgeenen/API-project/raw/main/project%20api/Schermafbeelding%202024-08-15%20223310.png)
+### PUT /tasks/{id}
+![Put Task By ID](https://github.com/Jensgeenen/API-project/raw/main/project%20api/put_task_by_id.png)
 
-- **POST /projects**: 
-  ![Post Project](https://github.com/Jensgeenen/API-project/raw/main/project%20api/Schermafbeelding%202024-08-15%20223358.png)
+### GET /projects/{id}/tasks
+![Get Tasks By Project ID](https://github.com/Jensgeenen/API-project/raw/main/project%20api/get_tasks_by_project_id.png)
 
-### OpenAPI Documentatie
+### POST /users
+![Post Users](https://github.com/Jensgeenen/API-project/raw/main/project%20api/post_users.png)
 
-Zie hieronder de screenshot van de OpenAPI (Swagger) documentatie:
+## OpenAPI Documentatie
 
-![Swagger Screenshot](https://github.com/Jensgeenen/API-project/raw/main/project%20api/Schermafbeelding%202024-08-15%20223909.png)
+(Schermopname van de OpenAPI-documentatie toevoegen)
 
-### Docker Container
+## Docker
 
-De API is verpakt in een Docker container die automatisch wordt opgebouwd via GitHub Actions. Zie het bestand `Dockerfile` en `docker-compose.yml` voor details.
-
-### Deployment via Docker Compose
-
-Het project kan lokaal worden gestart door de volgende commando's uit te voeren:
+Dit project kan worden uitgevoerd in een Docker-container. Gebruik de volgende instructies om de container te bouwen en uit te voeren:
 
 ```bash
-docker-compose up --build
+docker build -t api-project .
+docker run -p 5000:5000 api-project
